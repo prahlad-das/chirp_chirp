@@ -1,5 +1,9 @@
 package com.edgesoft.chirp.controller;
 
+import com.edgesoft.chirp.dto.ChirpRequest;
+import com.edgesoft.chirp.entity.Chirp;
+import com.edgesoft.chirp.service.ChirpService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,27 +11,34 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ChirpController {
 
+    @Autowired
+    ChirpService chirpService;
+
     //get
-    @GetMapping
-    public ResponseEntity<String> getChirp(){
-        return ResponseEntity.ok("Hello");
+    @GetMapping()
+    public ResponseEntity<Chirp> getChirp(@RequestParam("id") String id){
+        Chirp chirp = chirpService.getChirp(id);
+        return ResponseEntity.ok(chirp);
     }
 
     //post
     @PostMapping
-    public ResponseEntity<String> postChirp(){
-        return ResponseEntity.ok("Hello");
+    public ResponseEntity<Chirp> postChirp(@RequestBody ChirpRequest chirpRequest){
+        Chirp chirp = chirpService.postChirp(chirpRequest);
+        return ResponseEntity.ok(chirp);
     }
 
     //patch
     @PatchMapping
-    public ResponseEntity<String> updateChirp(){
-        return ResponseEntity.ok("Hello");
+    public ResponseEntity<Chirp> updateChirp(@RequestParam("id") String id, @RequestBody ChirpRequest chirpRequest){
+        Chirp chirp = chirpService.patchChirp(id, chirpRequest);
+        return ResponseEntity.ok(chirp);
     }
 
     //delete
     @DeleteMapping
-    public ResponseEntity<String> deleteChirp(){
-        return ResponseEntity.ok("Hello");
+    public ResponseEntity<String> deleteChirp(@RequestParam("id") String id){
+        chirpService.deleteChirp(id);
+        return ResponseEntity.ok("Chirp deleted with id " + id);
     }
 }

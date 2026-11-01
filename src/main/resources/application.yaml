@@ -1,3 +1,10 @@
 spring:
+  mongodb:
+    host: localhost
+    port: 27017
+    database: chirps
+    representation:
+      uuid: standard
+
   application:
     name: chirp
