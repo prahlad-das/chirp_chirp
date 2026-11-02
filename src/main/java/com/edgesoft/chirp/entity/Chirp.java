@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -13,7 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Chirp {
-    private String id; //change to snowflake id
+    @Id
+    private long id; //change to snowflake id
     private UUID authorId;
     private Instant createdAt;
     private String content;

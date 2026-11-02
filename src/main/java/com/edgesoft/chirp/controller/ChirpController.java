@@ -16,7 +16,7 @@ public class ChirpController {
 
     //get
     @GetMapping()
-    public ResponseEntity<Chirp> getChirp(@RequestParam("id") String id){
+    public ResponseEntity<Chirp> getChirp(@RequestParam("id") long id){
         Chirp chirp = chirpService.getChirp(id);
         return ResponseEntity.ok(chirp);
     }
@@ -30,14 +30,14 @@ public class ChirpController {
 
     //patch
     @PatchMapping
-    public ResponseEntity<Chirp> updateChirp(@RequestParam("id") String id, @RequestBody ChirpRequest chirpRequest){
+    public ResponseEntity<Chirp> updateChirp(@RequestParam("id") long id, @RequestBody ChirpRequest chirpRequest){
         Chirp chirp = chirpService.patchChirp(id, chirpRequest);
         return ResponseEntity.ok(chirp);
     }
 
     //delete
     @DeleteMapping
-    public ResponseEntity<String> deleteChirp(@RequestParam("id") String id){
+    public ResponseEntity<String> deleteChirp(@RequestParam("id") long id){
         chirpService.deleteChirp(id);
         return ResponseEntity.ok("Chirp deleted with id " + id);
     }
