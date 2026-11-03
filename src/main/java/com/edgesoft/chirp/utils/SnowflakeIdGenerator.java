@@ -17,6 +17,8 @@ public class SnowflakeIdGenerator {
     }
 
     public synchronized long nextId() {
+        // Clock skewness is ignored here
+        // As this is demo project only
         long epoch = System.currentTimeMillis();
         if (prevTimeStamp == epoch) {
             sequenceNumber += 1;
